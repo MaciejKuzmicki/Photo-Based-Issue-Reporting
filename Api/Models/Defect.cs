@@ -26,7 +26,7 @@ public class Defect
     [Required]
     public string ImageUrl { get; set; }
     
-    [ForeignKey("UserId")]
-    public Guid UserId { get; set; }
+    [ForeignKey("Id")]
+    public Guid Id { get; set; }
     public User User { get; set; }
 }

@@ -1,23 +1,11 @@
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Identity;
 
 namespace Api.Models;
 
-public class User
+public class User : IdentityUser
 {
-    [Key]
-    public Guid UserId { get; set; }
-
-    [Required]
-    public string Username { get; set; }
-
-    [Required]
-    public string Password { get; set; }
-
-    [Required]
-    public string FirstName { get; set; }
-
-    [Required]
+    public string Name { get; set; }
     public string LastName { get; set; }
-
     public ICollection<Defect> Defects { get; set; }
 }

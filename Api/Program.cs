@@ -1,5 +1,6 @@
 using System.Text;
 using Api.Database;
+using Api.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -14,15 +15,16 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<AuthDbContext>(options =>
+builder.Services.AddDbContext<DatabaseContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("Database"));
 });
 
-builder.Services.AddIdentityCore<IdentityUser>()
+
+builder.Services.AddIdentityCore<User>()
     .AddRoles<IdentityRole>()
-    .AddTokenProvider<DataProtectorTokenProvider<IdentityUser>>("CityDefectSystem")
-    .AddEntityFrameworkStores<AuthDbContext>()
+    .AddTokenProvider<DataProtectorTokenProvider<User>>("CityDefectSystem")
+    .AddEntityFrameworkStores<DatabaseContext>()
     .AddDefaultTokenProviders();
 
 builder.Services.Configure<IdentityOptions>(options =>
