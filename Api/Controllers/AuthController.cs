@@ -34,6 +34,7 @@ public class AuthController : ControllerBase
             LastName = newUser.LastName,
             Email = newUser.Email,
             UserName = newUser.Email,
+            Defects = new List<Defect>()
         };
         var result = await _userManager.CreateAsync(user, newUser.Password);
 
