@@ -1,5 +1,6 @@
 using Api.DTO;
 using Api.Models;
+using Api.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,9 +11,11 @@ namespace Api.Controllers;
 public class AuthController : ControllerBase
 {
     private readonly UserManager<User> _userManager;
-    public AuthController(UserManager<User> userManager)
+    private readonly IAuthService _authService;
+    public AuthController(UserManager<User> userManager, IAuthService authService)
     {
         _userManager = userManager;
+        _authService = authService;
     }
     
     [HttpPost]
@@ -41,13 +44,11 @@ public class AuthController : ControllerBase
             {
                 return Ok();
             }
-            else
-            {
-                if (result.Errors.Any())
-                {
-                    foreach(var error in result.Errors) ModelState.AddModelError("", error.Description);
-                }
+            if (result.Errors.Any())
+            { 
+                foreach(var error in result.Errors) ModelState.AddModelError("", error.Description);
             }
+            
         }
         else
         {
@@ -70,17 +71,19 @@ public class AuthController : ControllerBase
             var checkPassword = await _userManager.CheckPasswordAsync(user, request.Password);
             if (checkPassword)
             {
+                var roles = await _userManager.GetRolesAsync(user);
+                var token = _authService.CreateJwtToken(user, roles.ToList());
                 var response = new LoginResponseDto()
                 {
                     Email = user.Email,
                     Name = user.Name,
                     LastName = user.LastName,
-                    Token = "",
+                    Token = token,
                 };
                 return Ok(response);
             }
         }
-        else ModelState.AddModelError("", "Data are incorrect");
+        ModelState.AddModelError("", "Data are incorrect");
         return ValidationProblem(ModelState);
     }
 }
