@@ -80,6 +80,7 @@ public class AuthController : ControllerBase
                     Name = user.Name,
                     LastName = user.LastName,
                     Token = token,
+                    Id = user.Id,
                 };
                 return Ok(response);
             }

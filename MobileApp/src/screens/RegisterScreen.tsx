@@ -1,23 +1,61 @@
-// src/screens/RegisterScreen.tsx
 import React, {useState} from 'react';
-import {View, TextInput, Button, StyleSheet, Text} from 'react-native';
+import {
+  View,
+  TextInput,
+  Button,
+  StyleSheet,
+  Text,
+  Alert,
+  Image,
+} from 'react-native';
+import {RegisterRequest} from '../DTO/RegisterRequest.ts';
+import {AuthService} from '../services/AuthService.ts';
+import CustomButton from '../components/CustomButton.tsx';
+import CustomImage from '../components/CustomImage.tsx';
 
 // @ts-ignore
 const RegisterScreen = ({navigation}) => {
+  const [name, setName] = useState('');
+  const [lastname, setLastname] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-
-  const handleRegister = () => {
-    console.log(email, password, confirmPassword);
+  const handleRegister = async () => {
+    const registerData: RegisterRequest = {
+      name,
+      lastname,
+      email,
+      password,
+    };
+    if (password !== confirmPassword) {
+      Alert.alert('Error', 'Passwords are not the same');
+      return;
+    }
+    const response = await AuthService.register(registerData);
+    if (response !== -1) {
+      navigation.navigate('Login');
+    }
   };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Register</Text>
+      <CustomImage source="https://res.cloudinary.com/dxmsosoui/image/upload/v1711144136/lxyglrxfoubhx5v9jfiv.webp" />
+      <Text style={styles.title}>Create an account</Text>
       <TextInput
         style={styles.input}
-        placeholder="Email"
+        placeholder="Name"
+        value={name}
+        onChangeText={setName}
+      />
+      <TextInput
+        style={styles.input}
+        placeholder="Last name"
+        value={lastname}
+        onChangeText={setLastname}
+      />
+      <TextInput
+        style={styles.input}
+        placeholder="E-mail"
         value={email}
         onChangeText={setEmail}
       />
@@ -35,10 +73,11 @@ const RegisterScreen = ({navigation}) => {
         secureTextEntry
         onChangeText={setConfirmPassword}
       />
-      <Button title="Register" onPress={handleRegister} />
-      <Button
-        title="Already have an account? Login"
-        onPress={() => navigation.goBack()}
+      <CustomButton text="Register" press={handleRegister} type="primary" />
+      <CustomButton
+        text="Already have an account? Login"
+        press={() => navigation.navigate('Login')}
+        type="secondary"
       />
     </View>
   );
