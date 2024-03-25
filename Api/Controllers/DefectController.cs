@@ -32,6 +32,16 @@ public class DefectController : ControllerBase
         };
     }
 
+    [HttpGet("my-defects")]
+    [Authorize(Roles = "User")]
+    public async Task<IActionResult> GetMyDefects([FromHeader] string userId)
+    {
+        var response = await _defectService.GetMyDefects(userId);
+        if (response.Success) return Ok(response.Data);
+        if (response.StatusCode == HttpStatusCode.NotFound) return NotFound(response.Message);
+        else return NoContent();
+    }
+
     [HttpGet]
     [Authorize(Roles = "Admin")]
     public async Task<IActionResult> GetAllDefects() //Add Some Sort Options Later

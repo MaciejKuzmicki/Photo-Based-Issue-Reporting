@@ -48,6 +48,9 @@ public class DefectService : IDefectService
 
         try
         {
+            if (user.Defects == null) {
+                user.Defects = new List<Defect>();
+            }
             user.Defects.Add(defect);
             _context.Defects.Add(defect);
             await _context.SaveChangesAsync();
@@ -83,7 +86,50 @@ public class DefectService : IDefectService
 
     public async Task<ServiceResponse<DefectDto[]>> GetMyDefects(string userId)
     {
-        throw new NotImplementedException();
+        var user = await _userManager.FindByIdAsync(userId);
+        if (user is null)
+        {
+            return new ServiceResponse<DefectDto[]>
+            {
+                Success = false,
+                Message = "User does not exist",
+                StatusCode = HttpStatusCode.NotFound,
+                Data = null
+            };
+        }
+        List<Defect> defects = await _context.Defects.Where(x => x.User.Id == userId).ToListAsync();
+        if (defects.Count == 0)
+        {
+            return new ServiceResponse<DefectDto[]>
+            {
+                Message = "There is no defects in database",
+                StatusCode = HttpStatusCode.NotFound,
+                Success = false,
+                Data = null
+            };
+        }
+        List<DefectDto> defectDtos = new List<DefectDto>();
+        foreach (var defect in defects)
+        {
+            defectDtos.Add(new DefectDto()
+                {
+                    ImageUrl = defect.ImageUrl,
+                    Description = defect.Description,
+                    IsFixed = defect.IsFixed,
+                    Location = defect.Location,
+                    DefectCategory = defect.Category,
+                    DateReported = defect.DateReported,
+                    Id = defect.Id.ToString()
+                }
+            );
+        }
+        return new ServiceResponse<DefectDto[]>
+        {
+            Success = true,
+            Message = "Success",
+            StatusCode = HttpStatusCode.OK,
+            Data = defectDtos.ToArray(),
+        };
     }
 
     public async Task<ServiceResponse<DefectDto[]>> GetAllDefects()
@@ -123,4 +169,6 @@ public class DefectService : IDefectService
         };
         
     }
+    
+
 }

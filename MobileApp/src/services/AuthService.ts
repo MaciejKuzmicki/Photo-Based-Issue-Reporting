@@ -14,11 +14,24 @@ export const AuthService = {
         `${API_URL}/login`,
         loginData,
       );
-      await Keychain.setGenericPassword('email', response.data.email);
-      await Keychain.setGenericPassword('name', response.data.name);
-      await Keychain.setGenericPassword('lastname', response.data.lastName);
-      await Keychain.setGenericPassword('id', response.data.id);
-      await Keychain.setGenericPassword('token', response.data.token);
+      await Keychain.setGenericPassword('userEmail', response.data.email, {
+        service: 'userEmailService',
+      });
+      await Keychain.setGenericPassword('userName', response.data.name, {
+        service: 'userNameService',
+      });
+      await Keychain.setGenericPassword(
+        'userLastname',
+        response.data.lastName,
+        {service: 'userLastnameService'},
+      );
+      await Keychain.setGenericPassword('userId', response.data.id, {
+        service: 'userIdService',
+      });
+      await Keychain.setGenericPassword('userToken', response.data.token, {
+        service: 'userTokenService',
+      });
+
       return response.data;
     } catch (error) {
       if (axios.isAxiosError(error)) {
@@ -66,7 +79,9 @@ export const AuthService = {
           } else if (Object.keys(errors).length > 0) {
             const firstErrorKey = Object.keys(errors)[0];
             const firstError = errors[firstErrorKey];
-            firstErrorMessage = Array.isArray(firstError) ? firstError[0] : firstError || firstErrorMessage;
+            firstErrorMessage = Array.isArray(firstError)
+              ? firstError[0]
+              : firstError || firstErrorMessage;
           }
 
           Alert.alert('Registration Error', firstErrorMessage);
