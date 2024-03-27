@@ -4,6 +4,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import LoginScreen from './src/screens/LoginScreen.tsx';
 import RegisterScreen from './src/screens/RegisterScreen.tsx';
 import HomeScreen from './src/screens/HomeScreen.tsx';
+import AddDefectScreen from "./src/screens/AddDefectScreen.tsx";
 
 const Stack = createStackNavigator();
 
@@ -25,6 +26,11 @@ export default function App() {
           name="Home"
           component={HomeScreen}
           options={{title: 'Home'}}
+        />
+        <Stack.Screen
+          name="AddDefect"
+          component={AddDefectScreen}
+          options={{title: 'New Defect'}}
         />
       </Stack.Navigator>
     </NavigationContainer>

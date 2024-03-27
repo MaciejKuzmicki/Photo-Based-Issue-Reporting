@@ -1,10 +1,20 @@
 import {useEffect, useState} from 'react';
 import {DefectDto} from '../DTO/DefectDto.ts';
 import {DefectService} from '../services/DefectService.ts';
-import {ActivityIndicator, Alert, ScrollView, Text, View} from 'react-native';
+import {
+  ActivityIndicator,
+  Alert,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 import Defect from '../components/Defect.tsx';
+import CustomButton from '../components/CustomButton.tsx';
+import FloatingButton from '../components/FloatingButton.tsx';
 
-const HomeScreen = () => {
+// @ts-ignore
+const HomeScreen = ({navigation}) => {
   const [isLoading, setIsLoading] = useState(true);
   const [defects, setDefects] = useState<DefectDto[]>([]);
 
@@ -30,8 +40,8 @@ const HomeScreen = () => {
     return <ActivityIndicator />;
   }
   return (
-    <View>
-      <ScrollView>
+    <View style={{flex: 1}}>
+      <ScrollView style={{flex: 1}}>
         {defects.map(item => (
           <Defect
             key={item.id}
@@ -45,7 +55,12 @@ const HomeScreen = () => {
           />
         ))}
       </ScrollView>
+      <FloatingButton
+        press={() => navigation.navigate('AddDefect')}
+        text="Add new defect"
+      />
     </View>
   );
 };
+
 export default HomeScreen;
