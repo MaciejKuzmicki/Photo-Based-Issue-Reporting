@@ -1,8 +1,10 @@
 import { Dimensions, Image, StyleSheet } from "react-native";
 
 // @ts-ignore
-const CustomImage = ({source}) => {
-  return <Image style={styles.image} source={{uri: source}} />;
+const CustomImage = ({ source }) => {
+  const imageSource = typeof source === 'string' ? { uri: source } : source;
+
+  return <Image style={styles.image} source={imageSource} />;
 };
 
 const screenWidth = Dimensions.get('window').width;

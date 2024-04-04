@@ -8,22 +8,53 @@ import {
   Platform,
   PermissionsAndroid,
   Alert,
+  Image,
 } from 'react-native';
 import {RNCamera} from 'react-native-camera';
 import CustomButton from '../components/CustomButton.tsx';
 import {AddDefectRequest} from '../DTO/AddDefectRequest.ts';
 import Geolocation from 'react-native-geolocation-service';
+import {launchCamera} from 'react-native-image-picker';
+import CustomImage from '../components/CustomImage.tsx';
+import CloudinaryService from '../services/CloudinaryService.ts';
+import { DefectService } from "../services/DefectService.ts";
 
 const AddDefectScreen = () => {
   const [description, setDescription] = useState('');
   const [location, setLocation] = useState('');
+  const [image, setImage] = useState('');
+  const [cloudinary, setCloudinary] = useState('');
 
   const handleAddDefect = async () => {
-    const defectData: AddDefectRequest = {
-      description,
-      location,
-    };
     await requestLocationPermission();
+    if (image) {
+      setCloudinary(await CloudinaryService.uploadImageToCloudinary(image));
+    }
+    const defectData: AddDefectRequest = {
+      description: description,
+      location: location,
+      imageUrl: cloudinary,
+    };
+    const result = await DefectService.addDefect(defectData);
+  };
+
+  const handleImageUpload = async () => {
+    const options = {
+      saveToPhotos: true,
+      mediaType: 'photo',
+      includeBase64: true,
+      quality: 0.5,
+    };
+    await launchCamera(options, response => {
+      if (response.didCancel) {
+        Alert.alert('Error', 'Cancelled photo upload');
+      } else if (response.errorCode) {
+        Alert.alert('Error: ', response.errorMessage);
+      } else if (response.assets && response.assets.length > 0) {
+        const source = {uri: response.assets[0].uri};
+        setImage(source.uri);
+      }
+    });
   };
 
   const requestLocationPermission = async () => {
@@ -52,8 +83,7 @@ const AddDefectScreen = () => {
       position => {
         const {latitude, longitude} = position.coords;
         const locString = `https://www.google.com/maps/search/?api=1&query=${latitude},${longitude}`;
-        setLocation(locString); // Store location string
-        Alert.alert('Success', locString);
+        setLocation(locString);
       },
       error => {
         Alert.alert('Error fetching location', error.message);
@@ -67,9 +97,15 @@ const AddDefectScreen = () => {
       <TextInput
         style={styles.textInput}
         multiline
-        placeholder="Enter your text here"
+        placeholder="Describe the problem..."
         onChangeText={setDescription}
         value={description}
+      />
+      {image && <CustomImage source={image} />}
+      <CustomButton
+        press={handleImageUpload}
+        text="Add Image"
+        type="secondary"
       />
       <CustomButton press={handleAddDefect} text="Confirm" type="primary" />
     </View>
@@ -89,6 +125,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     textAlignVertical: 'top',
     padding: 10,
+    marginBottom: 20,
   },
 });
 export default AddDefectScreen;
