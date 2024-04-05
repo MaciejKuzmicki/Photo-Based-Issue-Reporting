@@ -1,6 +1,6 @@
 import cloudinaryConfig from '../cloudinaryConfig.ts';
 import axios from 'axios';
-import { Alert } from "react-native";
+import {Alert} from 'react-native';
 
 export const CloudinaryService = {
   async uploadImageToCloudinary(imageUri: string) {
@@ -10,8 +10,9 @@ export const CloudinaryService = {
       type: 'image/jpeg',
       name: `${imageUri}`,
     });
-    formData.append('upload_preset', 'mobileApp');
-    Alert.alert('error', 'here2'); //Ttutaj dochodzimy i dalej jest problem
+    formData.append('upload_preset', cloudinaryConfig.upload_preset);
+    formData.append('cloud_name', cloudinaryConfig.cloudName);
+
     try {
       const response = await axios.post(
         `https://api.cloudinary.com/v1_1/${cloudinaryConfig.cloudName}/image/upload`,
@@ -22,10 +23,9 @@ export const CloudinaryService = {
           },
         },
       );
-      Alert.alert('Upload successful', response.data);
-      return response.data;
+      return response.data.url;
     } catch (error) {
-      Alert.alert('Error uploading image', error);
+      Alert.alert('Error uploading image', error.toString());
     }
   },
 };

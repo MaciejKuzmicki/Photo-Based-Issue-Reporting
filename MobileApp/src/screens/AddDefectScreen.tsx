@@ -1,41 +1,38 @@
-import React, {useRef, useState} from 'react';
+import React, {useState} from 'react';
 import {
-  View,
-  TouchableOpacity,
-  Text,
-  TextInput,
-  StyleSheet,
-  Platform,
-  PermissionsAndroid,
   Alert,
-  Image,
+  PermissionsAndroid,
+  StyleSheet,
+  TextInput,
+  View,
 } from 'react-native';
-import {RNCamera} from 'react-native-camera';
 import CustomButton from '../components/CustomButton.tsx';
 import {AddDefectRequest} from '../DTO/AddDefectRequest.ts';
 import Geolocation from 'react-native-geolocation-service';
 import {launchCamera} from 'react-native-image-picker';
 import CustomImage from '../components/CustomImage.tsx';
 import CloudinaryService from '../services/CloudinaryService.ts';
-import { DefectService } from "../services/DefectService.ts";
+import {DefectService} from '../services/DefectService.ts';
 
-const AddDefectScreen = () => {
+const AddDefectScreen = ({navigation}) => {
   const [description, setDescription] = useState('');
-  const [location, setLocation] = useState('');
   const [image, setImage] = useState('');
-  const [cloudinary, setCloudinary] = useState('');
 
   const handleAddDefect = async () => {
-    await requestLocationPermission();
-    if (image) {
-      setCloudinary(await CloudinaryService.uploadImageToCloudinary(image));
+    const location = await requestLocationPermission();
+    if (!image) {
+      Alert.alert('Error', 'No image selected');
     }
+    const imageUrl = await CloudinaryService.uploadImageToCloudinary(image);
     const defectData: AddDefectRequest = {
       description: description,
       location: location,
-      imageUrl: cloudinary,
+      imageUrl: imageUrl,
     };
     const result = await DefectService.addDefect(defectData);
+    if (result != null) {
+      navigation.navigate('Home', {shouldRefresh: true});
+    }
   };
 
   const handleImageUpload = async () => {
@@ -69,7 +66,7 @@ const AddDefectScreen = () => {
         },
       );
       if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-        fetchLocation();
+        return await fetchLocation();
       } else {
         Alert.alert('Error', 'Permission denied');
       }
@@ -79,17 +76,21 @@ const AddDefectScreen = () => {
   };
 
   const fetchLocation = () => {
-    Geolocation.getCurrentPosition(
-      position => {
-        const {latitude, longitude} = position.coords;
-        const locString = `https://www.google.com/maps/search/?api=1&query=${latitude},${longitude}`;
-        setLocation(locString);
-      },
-      error => {
-        Alert.alert('Error fetching location', error.message);
-      },
-      {enableHighAccuracy: true, timeout: 15000, maximumAge: 10000},
-    );
+    return new Promise((resolve, reject) => {
+      Geolocation.getCurrentPosition(
+        position => {
+          const {latitude, longitude} = position.coords;
+          resolve(
+            `https://www.google.com/maps/search/?api=1&query=${latitude},${longitude}`,
+          );
+        },
+        error => {
+          Alert.alert('Error fetching location', error.message);
+          reject(new Error('Error fetching location'));
+        },
+        {enableHighAccuracy: true, timeout: 15000, maximumAge: 10000},
+      );
+    });
   };
 
   return (

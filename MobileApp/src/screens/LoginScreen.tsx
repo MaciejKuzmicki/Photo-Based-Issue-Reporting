@@ -18,7 +18,7 @@ const LoginScreen = ({navigation}) => {
     };
     const response = await AuthService.login(loginData);
     if (response != null) {
-      navigation.navigate('Home');
+      navigation.navigate('Home', {shouldRefresh: true});
     }
   };
 

@@ -14,27 +14,29 @@ import CustomButton from '../components/CustomButton.tsx';
 import FloatingButton from '../components/FloatingButton.tsx';
 
 // @ts-ignore
-const HomeScreen = ({navigation}) => {
+const HomeScreen = ({route, navigation}) => {
   const [isLoading, setIsLoading] = useState(true);
   const [defects, setDefects] = useState<DefectDto[]>([]);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const result = await DefectService.getMyDefects();
-
-        if (result != null) {
-          setDefects(result);
+    if (route.params?.shouldRefresh) {
+      const fetchData = async () => {
+        try {
+          setIsLoading(true);
+          const result = await DefectService.getMyDefects();
+          if (result != null) {
+            setDefects(result);
+          }
+        } catch (error) {
+          Alert.alert('Error', 'Failed to fetch defects');
+        } finally {
+          setIsLoading(false);
         }
-      } catch (error) {
-        Alert.alert('Error', 'XD');
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchData();
-  }, []);
+      };
+      fetchData();
+      navigation.setParams({ shouldRefresh: false });
+    }
+  }, [route.params?.shouldRefresh]);
 
   if (isLoading) {
     return <ActivityIndicator />;

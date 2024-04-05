@@ -18,10 +18,15 @@ export const DefectService = {
       Alert.alert('Error', 'Failed to authenticate');
     }
     try {
-      const response = await axios.post<DefectDto>(`${API_URL}`, defectData);
+      console.log(defectData);
+      const response = await axios.post<DefectDto>(`${API_URL}`, defectData, {
+        headers: {
+          Authorization: `Bearer ${token.password}`,
+          userId: `${userId.password}`,
+        },
+      });
       return response.data;
     } catch (error) {
-      Alert.alert('Error', error);
       return null;
     }
   },

@@ -1,8 +1,8 @@
-import { Dimensions, Image, StyleSheet } from "react-native";
+import {Dimensions, Image, StyleSheet} from 'react-native';
 
 // @ts-ignore
-const CustomImage = ({ source }) => {
-  const imageSource = typeof source === 'string' ? { uri: source } : source;
+const CustomImage = ({source}) => {
+  const imageSource = typeof source === 'string' ? {uri: source} : source;
 
   return <Image style={styles.image} source={imageSource} />;
 };

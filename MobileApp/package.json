@@ -22,6 +22,7 @@
     "axios": "^1.6.8",
     "bootstrap": "^5.3.3",
     "cloudinary": "^2.1.0",
+    "cloudinary-react-native": "^0.3.0",
     "expo-image-picker": "~14.7.1",
     "expo-permissions": "^14.4.0",
     "react": "18.2.0",
