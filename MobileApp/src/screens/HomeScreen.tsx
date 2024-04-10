@@ -1,16 +1,8 @@
 import {useEffect, useState} from 'react';
 import {DefectDto} from '../DTO/DefectDto.ts';
 import {DefectService} from '../services/DefectService.ts';
-import {
-  ActivityIndicator,
-  Alert,
-  ScrollView,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
+import {ActivityIndicator, Alert, ScrollView, View} from 'react-native';
 import Defect from '../components/Defect.tsx';
-import CustomButton from '../components/CustomButton.tsx';
 import FloatingButton from '../components/FloatingButton.tsx';
 
 // @ts-ignore
@@ -34,7 +26,7 @@ const HomeScreen = ({route, navigation}) => {
         }
       };
       fetchData();
-      navigation.setParams({ shouldRefresh: false });
+      navigation.setParams({shouldRefresh: false});
     }
   }, [route.params?.shouldRefresh]);
 
@@ -46,14 +38,13 @@ const HomeScreen = ({route, navigation}) => {
       <ScrollView style={{flex: 1}}>
         {defects.map(item => (
           <Defect
+            navigation={navigation}
             key={item.id}
             id={item.id}
             description={item.description}
-            location={item.location}
             imageUrl={item.imageUrl}
-            isFixed={item.isFixed}
-            defectCategory={item.defectCategory}
             date={item.dateReported}
+            locationName={item.locationName}
           />
         ))}
       </ScrollView>

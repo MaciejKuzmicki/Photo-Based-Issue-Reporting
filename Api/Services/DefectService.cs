@@ -20,12 +20,12 @@ public class DefectService : IDefectService
         _userManager = userManager;
     }
 
-    public async Task<ServiceResponse<DefectDto>> AddDefect(AddDefectRequestDto newDefect, string userId)
+    public async Task<ServiceResponse<DefectDetailsDto>> AddDefect(AddDefectRequestDto newDefect, string userId)
     {
         var user = await _userManager.FindByIdAsync(userId);
         if (user is null)
         {
-            return new ServiceResponse<DefectDto>
+            return new ServiceResponse<DefectDetailsDto>
             {
                 Success = false,
                 Message = "User does not exist",
@@ -43,6 +43,7 @@ public class DefectService : IDefectService
             Location = newDefect.Location,
             User = user,
             Id = Guid.NewGuid(),
+            LocationName = newDefect.LocationName,
             Category = DefectCategory.None // Category should be assigned by the AI Model
         };
 
@@ -54,7 +55,7 @@ public class DefectService : IDefectService
             user.Defects.Add(defect);
             _context.Defects.Add(defect);
             await _context.SaveChangesAsync();
-            DefectDto justCreatedDefect = new DefectDto()
+            DefectDetailsDto justCreatedDefectDetails = new DefectDetailsDto()
             {
                 DateReported = defect.DateReported,
                 IsFixed = defect.IsFixed,
@@ -62,19 +63,20 @@ public class DefectService : IDefectService
                 Location = defect.Location,
                 DefectCategory = defect.Category,
                 Description = defect.Description,
+                LocationName = defect.LocationName,
                 Id = defect.Id.ToString(),
             };
-            return new ServiceResponse<DefectDto>
+            return new ServiceResponse<DefectDetailsDto>
             {
                 Success = true,
                 Message = "Successfully added!",
                 StatusCode = HttpStatusCode.Created,
-                Data = justCreatedDefect, 
+                Data = justCreatedDefectDetails, 
             };
         }
         catch (Exception ex)
         {
-            return new ServiceResponse<DefectDto>
+            return new ServiceResponse<DefectDetailsDto>
             {
                 Success = false,
                 Message = ex.Message,
@@ -82,6 +84,41 @@ public class DefectService : IDefectService
                 Data = null,
             };
         }
+    }
+    
+    public async Task<ServiceResponse<DefectDetailsDto>> GetDefect(string defectId)
+    {
+        var defect = _context.Defects.FirstOrDefault(x => x.DefectId.ToString() == defectId);
+
+        if (defect is not null)
+        {
+            DefectDetailsDto defectDetailsDto = new DefectDetailsDto()
+            {
+                Id = defect.Id.ToString(),
+                Description = defect.Description,
+                Location = defect.Location,
+                LocationName = defect.LocationName,
+                DateReported = defect.DateReported,
+                IsFixed = defect.IsFixed,
+                DefectCategory = defect.Category,
+                ImageUrl = defect.ImageUrl,
+            };
+            return new ServiceResponse<DefectDetailsDto>
+            {
+                Success = true,
+                Message = "Success",
+                StatusCode = HttpStatusCode.OK,
+                Data = defectDetailsDto,
+            };
+        }
+
+        return new ServiceResponse<DefectDetailsDto>
+        {
+            Success = false,
+            Message = "Defect not found",
+            StatusCode = HttpStatusCode.NotFound,
+            Data = null
+        };
     }
 
     public async Task<ServiceResponse<DefectDto[]>> GetMyDefects(string userId)
@@ -115,11 +152,9 @@ public class DefectService : IDefectService
                 {
                     ImageUrl = defect.ImageUrl,
                     Description = defect.Description,
-                    IsFixed = defect.IsFixed,
-                    Location = defect.Location,
-                    DefectCategory = defect.Category,
                     DateReported = defect.DateReported,
-                    Id = defect.Id.ToString()
+                    Id = defect.DefectId.ToString(),
+                    LocationName = defect.LocationName,
                 }
             );
         }
@@ -152,11 +187,9 @@ public class DefectService : IDefectService
                 {
                     ImageUrl = defect.ImageUrl,
                     Description = defect.Description,
-                    IsFixed = defect.IsFixed,
-                    Location = defect.Location,
-                    DefectCategory = defect.Category,
                     DateReported = defect.DateReported,
-                    Id = defect.Id.ToString()
+                    Id = defect.DefectId.ToString(),
+                    LocationName = defect.LocationName,
                 }
             );
         }

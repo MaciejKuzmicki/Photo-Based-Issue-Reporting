@@ -1,13 +1,5 @@
 import React, {useState} from 'react';
-import {
-  View,
-  TextInput,
-  Button,
-  StyleSheet,
-  Text,
-  Alert,
-  Image,
-} from 'react-native';
+import {View, TextInput, StyleSheet, Text, Alert} from 'react-native';
 import {RegisterRequest} from '../DTO/RegisterRequest.ts';
 import {AuthService} from '../services/AuthService.ts';
 import CustomButton from '../components/CustomButton.tsx';

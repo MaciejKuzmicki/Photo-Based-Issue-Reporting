@@ -25,6 +25,7 @@ export const CloudinaryService = {
       );
       return response.data.url;
     } catch (error) {
+      // @ts-ignore
       Alert.alert('Error uploading image', error.toString());
     }
   },

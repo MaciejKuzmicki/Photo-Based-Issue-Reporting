@@ -14,6 +14,9 @@ public class Defect
 
     [Required]
     public string Location { get; set; }
+    
+    [Required]
+    public string LocationName { get; set; }
 
     [Required]
     public DateTime DateReported { get; set; } = DateTime.Now;

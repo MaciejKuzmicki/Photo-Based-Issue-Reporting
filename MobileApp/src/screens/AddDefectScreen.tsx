@@ -13,10 +13,13 @@ import {launchCamera} from 'react-native-image-picker';
 import CustomImage from '../components/CustomImage.tsx';
 import CloudinaryService from '../services/CloudinaryService.ts';
 import {DefectService} from '../services/DefectService.ts';
+import {ReverseGeocodingService} from '../services/ReverseGeocodingService.ts';
 
+// @ts-ignore
 const AddDefectScreen = ({navigation}) => {
   const [description, setDescription] = useState('');
   const [image, setImage] = useState('');
+  let name: string | null = '';
 
   const handleAddDefect = async () => {
     const location = await requestLocationPermission();
@@ -24,10 +27,14 @@ const AddDefectScreen = ({navigation}) => {
       Alert.alert('Error', 'No image selected');
     }
     const imageUrl = await CloudinaryService.uploadImageToCloudinary(image);
+    if (name == null) {
+      return;
+    }
     const defectData: AddDefectRequest = {
       description: description,
       location: location,
       imageUrl: imageUrl,
+      locationName: name,
     };
     const result = await DefectService.addDefect(defectData);
     if (result != null) {
@@ -75,14 +82,22 @@ const AddDefectScreen = ({navigation}) => {
     }
   };
 
-  const fetchLocation = () => {
+  const fetchLocation = async () => {
     return new Promise((resolve, reject) => {
       Geolocation.getCurrentPosition(
-        position => {
+        async position => {
           const {latitude, longitude} = position.coords;
           resolve(
             `https://www.google.com/maps/search/?api=1&query=${latitude},${longitude}`,
           );
+          const address = await ReverseGeocodingService.getAddress(
+            latitude,
+            longitude,
+          );
+          if (address == null) {
+            Alert.alert('Error', 'Failed to fetch location');
+          }
+          name = address;
         },
         error => {
           Alert.alert('Error fetching location', error.message);

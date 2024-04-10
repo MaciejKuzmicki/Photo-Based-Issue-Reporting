@@ -10,4 +10,6 @@ public class AddDefectRequestDto
     public string Location { get; set; }
     [Required]
     public string ImageUrl { get; set; }
+    [Required]
+    public string LocationName { get; set; }
 }

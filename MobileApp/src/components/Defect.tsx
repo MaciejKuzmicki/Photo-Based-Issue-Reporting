@@ -1,31 +1,40 @@
-import {Button, Card, Text} from 'react-native-paper';
+import React from 'react';
+import {Card, Text} from 'react-native-paper';
+import {Image, StyleSheet, TouchableOpacity, View} from 'react-native';
 import {DateFormatting} from '../utils/DateFormatting.ts';
-import {Dimensions, Image, StyleSheet, View} from 'react-native';
 
+// @ts-ignore
 const Defect = ({
   id,
   description,
-  location,
   imageUrl,
-  isFixed,
-  defectCategory,
   date,
+  locationName,
+  navigation,
 }) => {
+  const handlePress = () => {
+    navigation.navigate('Defect', {id: id});
+  };
+
   return (
-    <Card mode="outlined">
-      <View style={styles.view}>
-        <View style={styles.childView}>
-          <Image style={styles.image} source={{uri: imageUrl}} />
+    <TouchableOpacity onPress={handlePress}>
+      <Card mode="outlined">
+        <View style={styles.view}>
+          <View style={styles.childView}>
+            <Image style={styles.image} source={{uri: imageUrl}} />
+          </View>
+          <Card.Content style={[styles.content, {flex: 3}]}>
+            <View style={{flex: 1}}>
+              <Text variant="titleLarge">{locationName}</Text>
+              <Text variant="bodyMedium">{description}</Text>
+            </View>
+            <Text variant="bodyMedium" style={styles.date}>
+              {DateFormatting.formatDateTime(date)}
+            </Text>
+          </Card.Content>
         </View>
-        <Card.Content style={{flex: 3}}>
-          <Text variant="titleLarge">{location}</Text>
-          <Text variant="bodyMedium">{description}</Text>
-          <Text variant="bodyMedium" style={{fontWeight: 'bold'}}>
-            {DateFormatting.formatDateTime(date)}
-          </Text>
-        </Card.Content>
-      </View>
-    </Card>
+      </Card>
+    </TouchableOpacity>
   );
 };
 
@@ -47,5 +56,14 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
+  content: {
+    flex: 1,
+    justifyContent: 'space-between',
+  },
+  date: {
+    fontWeight: 'bold',
+    alignSelf: 'flex-start',
+  },
 });
+
 export default Defect;

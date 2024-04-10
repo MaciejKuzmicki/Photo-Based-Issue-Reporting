@@ -1,8 +1,7 @@
 import React, {useState} from 'react';
 
-import {View, TextInput, StyleSheet, Text, Image, Alert} from 'react-native';
+import {View, TextInput, StyleSheet, Text} from 'react-native';
 import {LoginRequest} from '../DTO/LoginRequest.ts';
-import axios from 'axios';
 import {AuthService} from '../services/AuthService.ts';
 import CustomButton from '../components/CustomButton.tsx';
 import CustomImage from '../components/CustomImage.tsx';

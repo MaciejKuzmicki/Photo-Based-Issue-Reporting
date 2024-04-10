@@ -51,4 +51,14 @@ public class DefectController : ControllerBase
         else if (response.StatusCode == HttpStatusCode.NotFound) return NotFound(response.Message);
         return NoContent();
     }
+
+    [HttpGet("{defectId}")]
+    [Authorize]
+    public async Task<IActionResult> GetDefect([FromRoute] string defectId)
+    {
+        var response = await _defectService.GetDefect(defectId);
+        if (response.Success) return Ok(response.Data);
+        else if (response.StatusCode == HttpStatusCode.NotFound) return NotFound(response.Message);
+        return NoContent();
+    }
 }
