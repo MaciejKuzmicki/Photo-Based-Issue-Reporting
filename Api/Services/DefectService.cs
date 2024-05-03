@@ -167,12 +167,12 @@ public class DefectService : IDefectService
         };
     }
 
-    public async Task<ServiceResponse<DefectDto[]>> GetAllDefects()
+    public async Task<ServiceResponse<DefectDetailsDto[]>> GetAllDefects()
     {
         List<Defect> defects = await _context.Defects.ToListAsync();
         if (defects.Count == 0)
         {
-            return new ServiceResponse<DefectDto[]>
+            return new ServiceResponse<DefectDetailsDto[]>
             {
                 Message = "There is no defects in database",
                 StatusCode = HttpStatusCode.NotFound,
@@ -180,20 +180,23 @@ public class DefectService : IDefectService
                 Data = null
             };
         }
-        List<DefectDto> defectDtos = new List<DefectDto>();
+        List<DefectDetailsDto> defectDtos = new List<DefectDetailsDto>();
         foreach (var defect in defects)
         {
-            defectDtos.Add(new DefectDto()
+            defectDtos.Add(new DefectDetailsDto()
                 {
                     ImageUrl = defect.ImageUrl,
                     Description = defect.Description,
                     DateReported = defect.DateReported,
                     Id = defect.DefectId.ToString(),
                     LocationName = defect.LocationName,
+                    IsFixed = defect.IsFixed,
+                    DefectCategory = defect.Category,
+                    Location = defect.Location
                 }
             );
         }
-        return new ServiceResponse<DefectDto[]>
+        return new ServiceResponse<DefectDetailsDto[]>
         {
             Success = true,
             Message = "Success",
