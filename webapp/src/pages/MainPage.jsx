@@ -19,6 +19,7 @@ function MainPage() {
 
         fetchData();
     }, []);
+
     return (
         <div>
             <CustomNavbar/>

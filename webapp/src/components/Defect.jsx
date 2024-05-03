@@ -1,9 +1,18 @@
 import {Card, Col, Row} from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import {DateFormatting} from "../utils/DateFormatting";
+import {DefectService} from "../services/Defect";
+import {useState} from "react";
+import Form from "react-bootstrap/Form";
 
-function Defect({defect}) {
-
+function Defect({defect: initialDefect}) {
+    const [defect, setDefect] = useState(initialDefect);
+    const handleFixButton = async () => {
+        const response = await DefectService.markAsFixed(defect.id);
+        if(response) {
+            setDefect(response);
+        }
+    }
     return (
         <Card style={{ width: '72rem' }}>
             <Row noGutters={true}>
@@ -30,8 +39,10 @@ function Defect({defect}) {
                             Category: {defect.defectCategory}
                         </Card.Text>
                         {!defect.isFixed ? (
-                            <Button variant="primary">Mark as fixed</Button>
-                        ) : <p>Fixed</p>}
+                            <Form onSubmit={handleFixButton}>
+                                <Button type="submit" variant="primary">Mark as fixed</Button>
+                            </Form>
+                        ) : <Button variant="secondary" disabled>Fixed</Button>}
                     </Card.Body>
                 </Col>
             </Row>

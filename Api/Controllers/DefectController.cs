@@ -39,7 +39,7 @@ public class DefectController : ControllerBase
         var response = await _defectService.GetMyDefects(userId);
         if (response.Success) return Ok(response.Data);
         if (response.StatusCode == HttpStatusCode.NotFound) return NotFound(response.Message);
-        else return NoContent();
+        return NoContent();
     }
 
     [HttpGet]
@@ -48,7 +48,18 @@ public class DefectController : ControllerBase
     {
         var response = await _defectService.GetAllDefects();
         if (response.Success) return Ok(response.Data);
-        else if (response.StatusCode == HttpStatusCode.NotFound) return NotFound(response.Message);
+        if (response.StatusCode == HttpStatusCode.NotFound) return NotFound(response.Message);
+        return NoContent();
+    }
+
+    [HttpPut("{defectId}")]
+    [Authorize(Roles = "Admin")]
+    public async Task<IActionResult> MarkAsFixed([FromRoute] string defectId)
+    {
+        var response = await _defectService.MarkAsFixed(defectId);
+        if (response.Success) return Ok(response.Data);
+        if (response.StatusCode == HttpStatusCode.NotFound) return NotFound(response.Message);
+        if (response.StatusCode == HttpStatusCode.Conflict) return Conflict(response.Message);
         return NoContent();
     }
 
@@ -58,7 +69,7 @@ public class DefectController : ControllerBase
     {
         var response = await _defectService.GetDefect(defectId);
         if (response.Success) return Ok(response.Data);
-        else if (response.StatusCode == HttpStatusCode.NotFound) return NotFound(response.Message);
+        if (response.StatusCode == HttpStatusCode.NotFound) return NotFound(response.Message);
         return NoContent();
     }
 }

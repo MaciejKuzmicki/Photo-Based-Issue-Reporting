@@ -9,4 +9,5 @@ public interface IDefectService
     Task<ServiceResponse<DefectDto[]>> GetMyDefects(string userId);
     Task<ServiceResponse<DefectDetailsDto[]>> GetAllDefects();
     Task<ServiceResponse<DefectDetailsDto>> GetDefect(string defectId);
+    Task<ServiceResponse<DefectDetailsDto>> MarkAsFixed(string defectId);
 }

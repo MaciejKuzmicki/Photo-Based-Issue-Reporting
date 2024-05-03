@@ -85,6 +85,52 @@ public class DefectService : IDefectService
             };
         }
     }
+
+    public async Task<ServiceResponse<DefectDetailsDto>> MarkAsFixed(string defectId)
+    {
+        var defect = _context.Defects.FirstOrDefault(x => x.DefectId.ToString() == defectId);
+        if (defect is not null)
+        {
+            if (defect.IsFixed)
+            {
+                return new ServiceResponse<DefectDetailsDto>()
+                {
+                    Success = false,
+                    Message = "Defect is already fixed",
+                    Data = null,
+                    StatusCode = HttpStatusCode.Conflict,
+                };
+            }
+            defect.IsFixed = true;
+            DefectDetailsDto defectDetailsDto = new DefectDetailsDto()
+            {
+                Id = defect.Id.ToString(),
+                Description = defect.Description,
+                Location = defect.Location,
+                LocationName = defect.LocationName,
+                DateReported = defect.DateReported,
+                IsFixed = defect.IsFixed,
+                DefectCategory = defect.Category,
+                ImageUrl = defect.ImageUrl,
+            };
+            _context.Entry(defect).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+            return new ServiceResponse<DefectDetailsDto>
+            {
+                Success = true,
+                Message = "Success",
+                StatusCode = HttpStatusCode.OK,
+                Data = defectDetailsDto,
+            };
+        }
+        return new ServiceResponse<DefectDetailsDto>
+        {
+            Success = false,
+            Message = "Defect not found",
+            StatusCode = HttpStatusCode.NotFound,
+            Data = null
+        };
+    }
     
     public async Task<ServiceResponse<DefectDetailsDto>> GetDefect(string defectId)
     {
