@@ -14,10 +14,10 @@ function Defect({defect: initialDefect}) {
         }
     }
     return (
-        <Card style={{ width: '72rem' }}>
+        <Card style={{ width: '72rem', borderRadius: '15px' }}>
             <Row noGutters={true}>
                 <Col md={4}>
-                    <Card.Img variant="top" src={defect.imageUrl} />
+                    <Card.Img variant="top" style={{borderRadius: '15px'}} src={defect.imageUrl} />
                 </Col>
                 <Col md={8}>
                     <Card.Body>

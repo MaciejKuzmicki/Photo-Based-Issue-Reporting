@@ -25,13 +25,16 @@ function MainPage() {
         <div>
             <CustomNavbar/>
             <Map defectsDetails={defects}/>
-            {defects.length > 0 ? (
-                defects.map(item => (
-                    <Defect key={item.id} defect={item} />
-                ))
-            ) : (
-                <p>No defects found</p>
-            )}
+            <br />
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%'}}>
+                {defects.length > 0 ? (
+                    defects.map(item => (
+                        <Defect key={item.id} defect={item} />
+                    ))
+                ) : (
+                    <p>No defects found</p>
+                )}
+            </div>
         </div>
     );
 
