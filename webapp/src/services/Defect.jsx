@@ -3,9 +3,9 @@ import axios from 'axios';
 const API_URL = 'http://localhost:5152/api/Defect';
 
 export const DefectService = {
-    async getDefects() {
+    async getDefects(isFixed, category) {
         try {
-            const response = await axios.get(`${API_URL}`, {
+            const response = await axios.get(`${API_URL}?IsFixed=${isFixed}&Category=${category}`, {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem('jwtToken')}`,
                         userId: `${localStorage.getItem('id')}`,
@@ -21,8 +21,8 @@ export const DefectService = {
                     const firstError = errors[firstErrorKey];
                     const errorMessage = firstError ? firstError[0] : 'An unexpected error occurred';
                     alert(`Error: ${errorMessage}`);
-                } else {
-                    alert('Error: An unexpected error occurred');
+                } else if (error.response && error.response.data && error.response.status === 404){
+                    //alert('Error: There is no defects');
                 }
             } else {
                 alert('Error: An unexpected error occurred');

@@ -1,5 +1,6 @@
 using System.Net;
 using Api.DTO;
+using Api.Enums;
 using Api.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http.HttpResults;
@@ -44,9 +45,9 @@ public class DefectController : ControllerBase
 
     [HttpGet]
     [Authorize(Roles = "Admin")]
-    public async Task<IActionResult> GetAllDefects() //Add Some Sort Options Later
+    public async Task<IActionResult> GetAllDefects([FromQuery] GetDefectsQuery parameters) //Add Some Sort Options Later, remember about fixed and not fixed
     {
-        var response = await _defectService.GetAllDefects();
+        var response = await _defectService.GetAllDefects(parameters.IsFixed, parameters.Category);
         if (response.Success) return Ok(response.Data);
         if (response.StatusCode == HttpStatusCode.NotFound) return NotFound(response.Message);
         return NoContent();

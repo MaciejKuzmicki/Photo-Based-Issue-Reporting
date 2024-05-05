@@ -213,9 +213,23 @@ public class DefectService : IDefectService
         };
     }
 
-    public async Task<ServiceResponse<DefectDetailsDto[]>> GetAllDefects()
+    public async Task<ServiceResponse<DefectDetailsDto[]>> GetAllDefects(IsFixedParameter isFixed, DefectCategory category)
     {
-        List<Defect> defects = await _context.Defects.ToListAsync();
+        IQueryable<Defect> query = _context.Defects;
+
+        if (isFixed != IsFixedParameter.All)
+        {
+            bool isFixedValue = isFixed == IsFixedParameter.True;
+            query = query.Where(d => d.IsFixed == isFixedValue);
+        }
+
+        if (category != DefectCategory.All)
+        {
+            query = query.Where(d => d.Category == category);
+        }
+
+        List<Defect> defects = await query.ToListAsync();
+
         if (defects.Count == 0)
         {
             return new ServiceResponse<DefectDetailsDto[]>
