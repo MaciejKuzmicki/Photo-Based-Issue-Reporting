@@ -18,7 +18,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IDefectService, DefectService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
-
+builder.Services.AddScoped<ICategorizationService, CategorizationService>();
+builder.Services.AddHttpClient();
 
 builder.Services.AddDbContext<DatabaseContext>(options =>
 {

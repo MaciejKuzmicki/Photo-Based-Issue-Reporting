@@ -8,5 +8,5 @@ public class GetDefectsQuery
     [Required]
     public IsFixedParameter IsFixed { get; set; }
     [Required]
-    public DefectCategory Category { get; set; }
+    public string Category { get; set; }
 }

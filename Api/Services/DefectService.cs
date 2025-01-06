@@ -12,12 +12,13 @@ public class DefectService : IDefectService
 {
     private readonly DatabaseContext _context;
     private readonly UserManager<User> _userManager;
+    private readonly ICategorizationService _categorizationService;
 
-
-    public DefectService(DatabaseContext context, UserManager<User> userManager)
+    public DefectService(DatabaseContext context, UserManager<User> userManager, ICategorizationService categorizationService)
     {
         _context = context;
         _userManager = userManager;
+        _categorizationService = categorizationService;
     }
 
     public async Task<ServiceResponse<DefectDetailsDto>> AddDefect(AddDefectRequestDto newDefect, string userId)
@@ -44,7 +45,7 @@ public class DefectService : IDefectService
             User = user,
             Id = Guid.NewGuid(),
             LocationName = newDefect.LocationName,
-            Category = DefectCategory.None // Category should be assigned by the AI Model
+            Category = await _categorizationService.AssignCategory(newDefect.ImageUrl, newDefect.Description)
         };
 
         try
@@ -213,7 +214,7 @@ public class DefectService : IDefectService
         };
     }
 
-    public async Task<ServiceResponse<DefectDetailsDto[]>> GetAllDefects(IsFixedParameter isFixed, DefectCategory category)
+    public async Task<ServiceResponse<DefectDetailsDto[]>> GetAllDefects(IsFixedParameter isFixed, string category)
     {
         IQueryable<Defect> query = _context.Defects;
 
@@ -223,7 +224,7 @@ public class DefectService : IDefectService
             query = query.Where(d => d.IsFixed == isFixedValue);
         }
 
-        if (category != DefectCategory.All)
+        if (category != "All")
         {
             query = query.Where(d => d.Category == category);
         }

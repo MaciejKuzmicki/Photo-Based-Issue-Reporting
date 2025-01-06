@@ -24,7 +24,7 @@ public class Defect
     public bool IsFixed { get; set; } = false;
 
     [Required]
-    public DefectCategory Category { get; set; }
+    public string Category { get; set; }
 
     [Required]
     public string ImageUrl { get; set; }

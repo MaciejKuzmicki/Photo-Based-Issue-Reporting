@@ -18,7 +18,7 @@ public class DefectDetailsDto
     [Required]
     public bool IsFixed { get; set; }
     [Required]
-    public DefectCategory DefectCategory { get; set; }
+    public string DefectCategory { get; set; }
     [Required]
     public string ImageUrl { get; set; }
 }
