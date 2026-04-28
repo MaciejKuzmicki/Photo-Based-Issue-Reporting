@@ -1,0 +1,261 @@
+[
+    {
+        "plik": "20260408_201438.jpg",
+        "przewidywana": "Powalone drzewa",
+        "prawdziwa": "Powalone drzewa",
+        "pewnosc": 54.69,
+        "poprawnie": true
+    },
+    {
+        "plik": "20260411_150749.jpg",
+        "przewidywana": "Graffiti",
+        "prawdziwa": "Graffiti",
+        "pewnosc": 89.06,
+        "poprawnie": true
+    },
+    {
+        "plik": "20260411_151205.jpg",
+        "przewidywana": "Graffiti",
+        "prawdziwa": "Graffiti",
+        "pewnosc": 81.61,
+        "poprawnie": true
+    },
+    {
+        "plik": "20260413_161528.jpg",
+        "przewidywana": "Smieci",
+        "prawdziwa": "Uszkodzona droga",
+        "pewnosc": 43.15,
+        "poprawnie": false
+    },
+    {
+        "plik": "20260413_162256.jpg",
+        "przewidywana": "Smieci",
+        "prawdziwa": "Smieci",
+        "pewnosc": 88.71,
+        "poprawnie": true
+    },
+    {
+        "plik": "20260413_163429.jpg",
+        "przewidywana": "Uszkodzona droga",
+        "prawdziwa": "Uszkodzona droga",
+        "pewnosc": 47.67,
+        "poprawnie": true
+    },
+    {
+        "plik": "20260413_163842.jpg",
+        "przewidywana": "Smieci",
+        "prawdziwa": "Smieci",
+        "pewnosc": 63.85,
+        "poprawnie": true
+    },
+    {
+        "plik": "20260413_164340.jpg",
+        "przewidywana": "Smieci",
+        "prawdziwa": "Smieci",
+        "pewnosc": 69.38,
+        "poprawnie": true
+    },
+    {
+        "plik": "20260419_190212.jpg",
+        "przewidywana": "Uszkodzona droga",
+        "prawdziwa": "Uszkodzona droga",
+        "pewnosc": 88.77,
+        "poprawnie": true
+    },
+    {
+        "plik": "20260420_162919.jpg",
+        "przewidywana": "Uszkodzony Znak",
+        "prawdziwa": "Uszkodzony Znak",
+        "pewnosc": 64.6,
+        "poprawnie": true
+    },
+    {
+        "plik": "20260420_162922.jpg",
+        "przewidywana": "Uszkodzony Znak",
+        "prawdziwa": "Uszkodzony Znak",
+        "pewnosc": 80.81,
+        "poprawnie": true
+    },
+    {
+        "plik": "20260425_190743.jpg",
+        "przewidywana": "Powalone drzewa",
+        "prawdziwa": "Powalone drzewa",
+        "pewnosc": 56.24,
+        "poprawnie": true
+    },
+    {
+        "plik": "20260425_191158.jpg",
+        "przewidywana": "Uszkodzony Znak",
+        "prawdziwa": "Uszkodzony Znak",
+        "pewnosc": 88.64,
+        "poprawnie": true
+    },
+    {
+        "plik": "20260425_191930.jpg",
+        "przewidywana": "Uszkodzony Znak",
+        "prawdziwa": "Graffiti",
+        "pewnosc": 80.46,
+        "poprawnie": false
+    },
+    {
+        "plik": "20260425_192440.jpg",
+        "przewidywana": "Smieci",
+        "prawdziwa": "Smieci",
+        "pewnosc": 88.83,
+        "poprawnie": true
+    },
+    {
+        "plik": "20260425_193041.jpg",
+        "przewidywana": "Graffiti",
+        "prawdziwa": "Uszkodzona droga",
+        "pewnosc": 54.07,
+        "poprawnie": false
+    },
+    {
+        "plik": "20260425_193537.jpg",
+        "przewidywana": "Graffiti",
+        "prawdziwa": "Uszkodzony Znak",
+        "pewnosc": 70.13,
+        "poprawnie": false
+    },
+    {
+        "plik": "20260426_153337.jpg",
+        "przewidywana": "Powalone drzewa",
+        "prawdziwa": "Powalone drzewa",
+        "pewnosc": 91.52,
+        "poprawnie": true
+    },
+    {
+        "plik": "20260427_170759.jpg",
+        "przewidywana": "Smieci",
+        "prawdziwa": "Smieci",
+        "pewnosc": 71.79,
+        "poprawnie": true
+    },
+    {
+        "plik": "20260427_200654.jpg",
+        "przewidywana": "Graffiti",
+        "prawdziwa": "Uszkodzona droga",
+        "pewnosc": 53.17,
+        "poprawnie": false
+    },
+    {
+        "plik": "20260428_165700.jpg",
+        "przewidywana": "Graffiti",
+        "prawdziwa": "Graffiti",
+        "pewnosc": 84.75,
+        "poprawnie": true
+    },
+    {
+        "plik": "20260428_165748.jpg",
+        "przewidywana": "Graffiti",
+        "prawdziwa": "Graffiti",
+        "pewnosc": 96.75,
+        "poprawnie": true
+    },
+    {
+        "plik": "20260428_170030.jpg",
+        "przewidywana": "Smieci",
+        "prawdziwa": "Smieci",
+        "pewnosc": 92.12,
+        "poprawnie": true
+    },
+    {
+        "plik": "20260428_170958.jpg",
+        "przewidywana": "Smieci",
+        "prawdziwa": "Uszkodzony Znak",
+        "pewnosc": 62.58,
+        "poprawnie": false
+    },
+    {
+        "plik": "20260428_171154.jpg",
+        "przewidywana": "Smieci",
+        "prawdziwa": "Smieci",
+        "pewnosc": 86.79,
+        "poprawnie": true
+    },
+    {
+        "plik": "20260428_171203.jpg",
+        "przewidywana": "Graffiti",
+        "prawdziwa": "Graffiti",
+        "pewnosc": 96.85,
+        "poprawnie": true
+    },
+    {
+        "plik": "20260428_171410.jpg",
+        "przewidywana": "Uszkodzony Znak",
+        "prawdziwa": "Uszkodzony Znak",
+        "pewnosc": 97.12,
+        "poprawnie": true
+    },
+    {
+        "plik": "20260428_171754.jpg",
+        "przewidywana": "Uszkodzony Znak",
+        "prawdziwa": "Uszkodzony Znak",
+        "pewnosc": 95.13,
+        "poprawnie": true
+    },
+    {
+        "plik": "20260428_172026.jpg",
+        "przewidywana": "Powalone drzewa",
+        "prawdziwa": "Powalone drzewa",
+        "pewnosc": 87.29,
+        "poprawnie": true
+    },
+    {
+        "plik": "20260428_174125.jpg",
+        "przewidywana": "Uszkodzony Znak",
+        "prawdziwa": "Uszkodzony Znak",
+        "pewnosc": 96.07,
+        "poprawnie": true
+    },
+    {
+        "plik": "20260428_175551.jpg",
+        "przewidywana": "Uszkodzony Znak",
+        "prawdziwa": "Uszkodzony Znak",
+        "pewnosc": 92.87,
+        "poprawnie": true
+    },
+    {
+        "plik": "20260428_180717.jpg",
+        "przewidywana": "Uszkodzony Znak",
+        "prawdziwa": "Uszkodzony Znak",
+        "pewnosc": 96.09,
+        "poprawnie": true
+    },
+    {
+        "plik": "20260428_180729.jpg",
+        "przewidywana": "Uszkodzony Znak",
+        "prawdziwa": "Uszkodzony Znak",
+        "pewnosc": 95.47,
+        "poprawnie": true
+    },
+    {
+        "plik": "20260428_181108.jpg",
+        "przewidywana": "Uszkodzona droga",
+        "prawdziwa": "Uszkodzona droga",
+        "pewnosc": 81.89,
+        "poprawnie": true
+    },
+    {
+        "plik": "20260428_181157.jpg",
+        "przewidywana": "Smieci",
+        "prawdziwa": "Smieci",
+        "pewnosc": 75.37,
+        "poprawnie": true
+    },
+    {
+        "plik": "20260428_202930.jpg",
+        "przewidywana": "Uszkodzony Znak",
+        "prawdziwa": "Uszkodzony Znak",
+        "pewnosc": 81.42,
+        "poprawnie": true
+    },
+    {
+        "plik": "Gemini_Generated_Image_Electrical_Damaged.png",
+        "przewidywana": "Słupy Elektryczne",
+        "prawdziwa": "Słupy Elektryczne",
+        "pewnosc": 88.52,
+        "poprawnie": true
+    }
+]

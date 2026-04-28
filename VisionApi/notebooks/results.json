@@ -1,0 +1,346 @@
+{
+    "summary": {
+        "base_accuracy": "66.67%",
+        "threshold_used": "80.0%",
+        "accuracy_at_threshold": "100.00%",
+        "coverage_at_threshold": "4.8%"
+    },
+    "results": [
+        {
+            "plik": "20260408_201438.jpg",
+            "przewidywana": "Słupy Elektryczne",
+            "prawdziwa": "Powalone drzewa",
+            "pewnosc": 28.75531017780304,
+            "poprawnie": false,
+            "rozklad": {
+                "Słupy Elektryczne": "28.8%",
+                "Uszkodzona droga": "15.0%",
+                "Uszkodzony Znak": "7.5%",
+                "Powalone drzewa": "11.6%",
+                "Smieci": "17.7%",
+                "Graffiti": "19.5%"
+            },
+            "powyzej_progu": false
+        },
+        {
+            "plik": "20260411_150749.jpg",
+            "przewidywana": "Graffiti",
+            "prawdziwa": "Graffiti",
+            "pewnosc": 69.41903233528137,
+            "poprawnie": true,
+            "rozklad": {
+                "Słupy Elektryczne": "5.4%",
+                "Uszkodzona droga": "1.6%",
+                "Uszkodzony Znak": "6.0%",
+                "Powalone drzewa": "2.1%",
+                "Smieci": "15.5%",
+                "Graffiti": "69.4%"
+            },
+            "powyzej_progu": false
+        },
+        {
+            "plik": "20260411_151205.jpg",
+            "przewidywana": "Graffiti",
+            "prawdziwa": "Graffiti",
+            "pewnosc": 78.8353443145752,
+            "poprawnie": true,
+            "rozklad": {
+                "Słupy Elektryczne": "3.2%",
+                "Uszkodzona droga": "2.0%",
+                "Uszkodzony Znak": "4.0%",
+                "Powalone drzewa": "1.5%",
+                "Smieci": "10.6%",
+                "Graffiti": "78.8%"
+            },
+            "powyzej_progu": false
+        },
+        {
+            "plik": "20260413_161528.jpg",
+            "przewidywana": "Uszkodzona droga",
+            "prawdziwa": "Uszkodzona droga",
+            "pewnosc": 51.071542501449585,
+            "poprawnie": true,
+            "rozklad": {
+                "Słupy Elektryczne": "4.5%",
+                "Uszkodzona droga": "51.1%",
+                "Uszkodzony Znak": "2.7%",
+                "Powalone drzewa": "4.8%",
+                "Smieci": "27.2%",
+                "Graffiti": "9.8%"
+            },
+            "powyzej_progu": false
+        },
+        {
+            "plik": "20260413_162256.jpg",
+            "przewidywana": "Smieci",
+            "prawdziwa": "Smieci",
+            "pewnosc": 51.71802639961243,
+            "poprawnie": true,
+            "rozklad": {
+                "Słupy Elektryczne": "6.1%",
+                "Uszkodzona droga": "2.4%",
+                "Uszkodzony Znak": "5.3%",
+                "Powalone drzewa": "3.9%",
+                "Smieci": "51.7%",
+                "Graffiti": "30.5%"
+            },
+            "powyzej_progu": false
+        },
+        {
+            "plik": "20260413_163429.jpg",
+            "przewidywana": "Uszkodzona droga",
+            "prawdziwa": "Uszkodzona droga",
+            "pewnosc": 59.15746092796326,
+            "poprawnie": true,
+            "rozklad": {
+                "Słupy Elektryczne": "2.1%",
+                "Uszkodzona droga": "59.2%",
+                "Uszkodzony Znak": "2.5%",
+                "Powalone drzewa": "2.2%",
+                "Smieci": "24.8%",
+                "Graffiti": "9.2%"
+            },
+            "powyzej_progu": false
+        },
+        {
+            "plik": "20260413_163842.jpg",
+            "przewidywana": "Graffiti",
+            "prawdziwa": "Smieci",
+            "pewnosc": 36.947402358055115,
+            "poprawnie": false,
+            "rozklad": {
+                "Słupy Elektryczne": "17.2%",
+                "Uszkodzona droga": "6.1%",
+                "Uszkodzony Znak": "6.5%",
+                "Powalone drzewa": "4.8%",
+                "Smieci": "28.5%",
+                "Graffiti": "36.9%"
+            },
+            "powyzej_progu": false
+        },
+        {
+            "plik": "20260413_164340.jpg",
+            "przewidywana": "Smieci",
+            "prawdziwa": "Smieci",
+            "pewnosc": 38.138481974601746,
+            "poprawnie": true,
+            "rozklad": {
+                "Słupy Elektryczne": "7.9%",
+                "Uszkodzona droga": "8.4%",
+                "Uszkodzony Znak": "6.7%",
+                "Powalone drzewa": "3.0%",
+                "Smieci": "38.1%",
+                "Graffiti": "35.9%"
+            },
+            "powyzej_progu": false
+        },
+        {
+            "plik": "20260419_190212.jpg",
+            "przewidywana": "Uszkodzona droga",
+            "prawdziwa": "Uszkodzona droga",
+            "pewnosc": 97.19102382659912,
+            "poprawnie": true,
+            "rozklad": {
+                "Słupy Elektryczne": "0.4%",
+                "Uszkodzona droga": "97.2%",
+                "Uszkodzony Znak": "0.2%",
+                "Powalone drzewa": "0.2%",
+                "Smieci": "0.9%",
+                "Graffiti": "1.0%"
+            },
+            "powyzej_progu": true
+        },
+        {
+            "plik": "20260420_162919.jpg",
+            "przewidywana": "Graffiti",
+            "prawdziwa": "Uszkodzony Znak",
+            "pewnosc": 65.39217829704285,
+            "poprawnie": false,
+            "rozklad": {
+                "Słupy Elektryczne": "2.9%",
+                "Uszkodzona droga": "2.7%",
+                "Uszkodzony Znak": "21.1%",
+                "Powalone drzewa": "2.7%",
+                "Smieci": "5.3%",
+                "Graffiti": "65.4%"
+            },
+            "powyzej_progu": false
+        },
+        {
+            "plik": "20260420_162922.jpg",
+            "przewidywana": "Graffiti",
+            "prawdziwa": "Uszkodzony Znak",
+            "pewnosc": 79.85278964042664,
+            "poprawnie": false,
+            "rozklad": {
+                "Słupy Elektryczne": "3.1%",
+                "Uszkodzona droga": "0.4%",
+                "Uszkodzony Znak": "11.2%",
+                "Powalone drzewa": "3.5%",
+                "Smieci": "1.9%",
+                "Graffiti": "79.9%"
+            },
+            "powyzej_progu": false
+        },
+        {
+            "plik": "20260425_190743.jpg",
+            "przewidywana": "Powalone drzewa",
+            "prawdziwa": "Powalone drzewa",
+            "pewnosc": 30.92641532421112,
+            "poprawnie": true,
+            "rozklad": {
+                "Słupy Elektryczne": "14.6%",
+                "Uszkodzona droga": "8.0%",
+                "Uszkodzony Znak": "4.4%",
+                "Powalone drzewa": "30.9%",
+                "Smieci": "21.8%",
+                "Graffiti": "20.3%"
+            },
+            "powyzej_progu": false
+        },
+        {
+            "plik": "20260425_191158.jpg",
+            "przewidywana": "Powalone drzewa",
+            "prawdziwa": "Uszkodzony Znak",
+            "pewnosc": 79.32940125465393,
+            "poprawnie": false,
+            "rozklad": {
+                "Słupy Elektryczne": "5.9%",
+                "Uszkodzona droga": "2.3%",
+                "Uszkodzony Znak": "3.7%",
+                "Powalone drzewa": "79.3%",
+                "Smieci": "4.5%",
+                "Graffiti": "4.4%"
+            },
+            "powyzej_progu": false
+        },
+        {
+            "plik": "20260425_191930.jpg",
+            "przewidywana": "Graffiti",
+            "prawdziwa": "Graffiti",
+            "pewnosc": 43.14427971839905,
+            "poprawnie": true,
+            "rozklad": {
+                "Słupy Elektryczne": "6.2%",
+                "Uszkodzona droga": "1.9%",
+                "Uszkodzony Znak": "23.8%",
+                "Powalone drzewa": "6.3%",
+                "Smieci": "18.6%",
+                "Graffiti": "43.1%"
+            },
+            "powyzej_progu": false
+        },
+        {
+            "plik": "20260425_192440.jpg",
+            "przewidywana": "Smieci",
+            "prawdziwa": "Smieci",
+            "pewnosc": 39.508962631225586,
+            "poprawnie": true,
+            "rozklad": {
+                "Słupy Elektryczne": "6.7%",
+                "Uszkodzona droga": "12.5%",
+                "Uszkodzony Znak": "5.5%",
+                "Powalone drzewa": "16.1%",
+                "Smieci": "39.5%",
+                "Graffiti": "19.6%"
+            },
+            "powyzej_progu": false
+        },
+        {
+            "plik": "20260425_193041.jpg",
+            "przewidywana": "Uszkodzona droga",
+            "prawdziwa": "Uszkodzona droga",
+            "pewnosc": 62.516528367996216,
+            "poprawnie": true,
+            "rozklad": {
+                "Słupy Elektryczne": "4.5%",
+                "Uszkodzona droga": "62.5%",
+                "Uszkodzony Znak": "2.7%",
+                "Powalone drzewa": "3.7%",
+                "Smieci": "14.2%",
+                "Graffiti": "12.5%"
+            },
+            "powyzej_progu": false
+        },
+        {
+            "plik": "20260425_193537.jpg",
+            "przewidywana": "Graffiti",
+            "prawdziwa": "Uszkodzony Znak",
+            "pewnosc": 59.73523259162903,
+            "poprawnie": false,
+            "rozklad": {
+                "Słupy Elektryczne": "16.2%",
+                "Uszkodzona droga": "1.8%",
+                "Uszkodzony Znak": "6.8%",
+                "Powalone drzewa": "1.8%",
+                "Smieci": "13.7%",
+                "Graffiti": "59.7%"
+            },
+            "powyzej_progu": false
+        },
+        {
+            "plik": "20260426_153337.jpg",
+            "przewidywana": "Powalone drzewa",
+            "prawdziwa": "Powalone drzewa",
+            "pewnosc": 55.124592781066895,
+            "poprawnie": true,
+            "rozklad": {
+                "Słupy Elektryczne": "14.6%",
+                "Uszkodzona droga": "6.8%",
+                "Uszkodzony Znak": "4.5%",
+                "Powalone drzewa": "55.1%",
+                "Smieci": "6.2%",
+                "Graffiti": "12.7%"
+            },
+            "powyzej_progu": false
+        },
+        {
+            "plik": "20260427_170759.jpg",
+            "przewidywana": "Smieci",
+            "prawdziwa": "Smieci",
+            "pewnosc": 31.763839721679688,
+            "poprawnie": true,
+            "rozklad": {
+                "Słupy Elektryczne": "21.2%",
+                "Uszkodzona droga": "4.2%",
+                "Uszkodzony Znak": "6.2%",
+                "Powalone drzewa": "6.0%",
+                "Smieci": "31.8%",
+                "Graffiti": "30.6%"
+            },
+            "powyzej_progu": false
+        },
+        {
+            "plik": "20260427_200654.jpg",
+            "przewidywana": "Uszkodzona droga",
+            "prawdziwa": "Uszkodzona droga",
+            "pewnosc": 51.75352692604065,
+            "poprawnie": true,
+            "rozklad": {
+                "Słupy Elektryczne": "6.9%",
+                "Uszkodzona droga": "51.8%",
+                "Uszkodzony Znak": "2.6%",
+                "Powalone drzewa": "3.2%",
+                "Smieci": "30.3%",
+                "Graffiti": "5.2%"
+            },
+            "powyzej_progu": false
+        },
+        {
+            "plik": "Gemini_Generated_Image_Electrical_Damaged.png",
+            "przewidywana": "Graffiti",
+            "prawdziwa": "Słupy Elektryczne",
+            "pewnosc": 30.672487616539,
+            "poprawnie": false,
+            "rozklad": {
+                "Słupy Elektryczne": "30.3%",
+                "Uszkodzona droga": "9.7%",
+                "Uszkodzony Znak": "7.7%",
+                "Powalone drzewa": "5.5%",
+                "Smieci": "16.2%",
+                "Graffiti": "30.7%"
+            },
+            "powyzej_progu": false
+        }
+    ]
+}
